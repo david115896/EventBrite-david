@@ -6,7 +6,7 @@ class User < ApplicationRecord
 	#validates :age, format: {with: /[0-9]{2}/, message: "l'age doit etre ecrit avec 2 chiffres"}, on: :update
 	validates :description, text:true, on: :update
 	#validates :city_id, text: true, on: :update
-	validates :password, presence: true, length: {minimum: 6} 
+	validates :encrypted_password, presence: true, length: {minimum: 6} 
 		
 	#has_secure_password
 		

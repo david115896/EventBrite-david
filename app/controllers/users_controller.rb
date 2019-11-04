@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  after_action :welcome_send, only: [:create]
 
   # GET /users
   # GET /users.json
@@ -70,5 +71,9 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       return params.require(:user).permit(:first_name, :email, :encrypted_password )
+    end
+
+    def welcome_send
+      UserMailer.welcome_email(@user).deliver_now
     end
 end
