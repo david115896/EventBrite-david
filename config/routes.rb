@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
 
-  devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :users #, controllers: { registrations: "registrations" }
   resources :attendances
   resources :events
   devise_scope :user do
