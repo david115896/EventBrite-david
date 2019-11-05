@@ -72,4 +72,4 @@ gem 'dotenv-rails'
 gem 'sendgrid-ruby'
 
 gem 'devise'
-
+gem 'jquery-turbolinks'
