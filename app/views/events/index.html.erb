@@ -1,25 +1,47 @@
-<p id="notice"><%= notice %></p>
+  <!-- Masthead -->
+  <header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
 
-<h1>Events</h1>
+      <!-- Masthead Avatar Image -->
+      <img class="masthead-avatar mb-5" src="/images/avatar.svg" alt="">
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <!-- Masthead Heading -->
+      <h1 class="masthead-heading text-uppercase mb-0"> Bienvenue sur EventBrite - <%=current_user.first_name %> !</h1>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <!-- Masthead Subheading -->
+      <p class="masthead-subheading font-weight-light mb-0"> Realised by David.T</p>
 
-<br>
+    </div>
+  </header>
 
-<%= link_to 'New Event', new_event_path %>
+  <!-- Portfolio Section -->
+  <section class="page-section portfolio" id="portfolio">
+    <div class="container">
+
+      <!-- Portfolio Section Heading -->
+      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Liste des Evenements</h2>
+
+      <!-- Icon Divider -->
+      <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+      </div>
+	
+      <!-- Cards Events -->
+      <div class="row">
+ 	      <% @events.each do |event| %>
+		      <div class="card m-2" style="width: 16rem;">
+			    	<div class="card-body">
+				  	  <h5 class="card-title"> <%= event.title %></h5>
+  				  	<h6 class="card-subtitle mb-2 text-muted">Auteur : <%= event.description%></h6>
+              <%= link_to "Afficher le detail de l'evenement", event_path(event.id) %>
+			      </div>
+  		    </div>
+	      <% end %>
+      </div>
+    </div>
+  </section>
+

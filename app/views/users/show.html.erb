@@ -1,4 +1,54 @@
-<p id="notice"><%= notice %></p>
+<!-- Masthead -->
+<header class="masthead bg-primary text-white text-center">
+	<div class="container d-flex align-items-center flex-column">
+		<!-- Masthead Heading -->
+		<h1 class="masthead-heading text-uppercase mb-0"> Fiche Organisateur</h1>
+	</div>
+</header>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<!-- Portfolio Section -->
+<section class="page-section portfolio" id="portfolio">
+	<div class="container">
+		<!-- Portfolio Section Heading -->
+		<h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Organisateur :  <%= "#{@user.first_name}" %> </p></h2>
+		<!-- Icon Divider -->
+		<div class="divider-custom">
+			<div class="divider-custom-line"></div>
+		<div class="divider-custom-icon">
+        		<i class="fas fa-star"></i>
+		</div>
+			<div class="divider-custom-line"></div>
+		</div>
+
+
+	
+	
+		<div class="row">
+			<div class="col-8">
+				<div class="row">
+				        <% @events_user.each do |event| %>
+		     			 <div class="card m-2" style="width: 16rem;">
+			    			<div class="card-body">
+				  			 	<h5 class="card-title"> <%= event.title %></h5>
+  				  				<h6 class="card-subtitle mb-2 text-muted">Auteur : <%= event.admin.first_name %></h6>
+              					 <%= link_to "Afficher le detail de l'evenement", event_path(event.id) %>
+			     			</div>
+  		   				 </div>
+	    				  <% end %>
+			      </div>
+			</div>
+  			<div class="col-4">
+		      		<div class="jumbotron">
+					<img class="masthead-avatar mb-5" src="/images/avatar.svg" alt="">
+					<p class="lead"><%= "#{@user.first_name} #{@user.last_name} " %></p>
+			                <hr class="my-4">
+        	        	        	<p> <%= @user.description %></p>
+	                	        	
+					</hr>
+	                                <hr class="my-4">
+					<p> Contact <%= @user.email %> </p>
+					</hr>
+				</div>
+			</div>
+		</div>
+</section>

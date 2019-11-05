@@ -3,7 +3,7 @@ require 'faker'
 user_count = User.all.count
 
 10.times do |f|             #cree 10 user avec une ville en reference
-        User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Quote.famous_last_words, email: "henri#{f+user_count}@yopmail.com", encrypted_password:"Helloworld")
+        User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Quote.famous_last_words, email: "henri#{f+user_count}@yopmail.com", password:"Helloworld")
 end
 puts "10 utilisateurs crees"
 
