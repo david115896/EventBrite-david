@@ -19,26 +19,11 @@
                 </div>
               <% end %>
               <h1 class="h3 mb-3 font-weight-normal text-center"> Modifier mes informations </h1>
-              <div class="form-group">
-                <%= f.label :first_name, "Prenom" %>
-                <%= f.text_field :first_name, autocomplete: "first_name", class: "form-control" %>
-              </div>
-              <div class="form-group">
-                <%= f.label :last_name, "Nom" %>
-                <%= f.text_field :last_name, autocomplete: "last_name", class: "form-control" %>
-              </div>
+              
               <div class="form-group">
                 <%= f.label :description, "Description" %><br />
                 <%= f.text_field :description, autocomplete: "description", class: "form-control" %>
               </div>
-              <div class="form-group">
-                <%= f.label :email, "Email" %><br />
-                <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
-              </div>
-              <!-- <div class="form-group">
-                <%= f.label :password, "Mot de passe" %>
-                <%= f.password_field :password, autocomplete: "password", class: "form-control" %>
-              </div> -->
               <div class="actions mt-5 mb-4">
                 <%= f.submit "Modifier l'evenement", class:"btn btn-md btn-primary btn-block text-uppercase" %>
               </div>

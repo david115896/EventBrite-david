@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @events_user = Event.where(admin: @user)
+    @events_admin = Event.where(admin: @user)
+  
 
   end
 
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
     def user_params
-      return params.require(:user).permit(:first_name, :last_name, :description, :email)
+      return params.require(:user).permit(:first_name, :last_name, :description)
     end
 
 end
