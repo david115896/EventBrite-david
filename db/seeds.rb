@@ -13,6 +13,11 @@ puts "10 utilisateurs crees"
 end
 puts "10 evenements crees"
 
+10.times do  |index|    #cree 10 events
+        Attendance.create!(event: Event.all.sample, user: User.all.sample)
+end
+puts "10 partipants crees"
+
 
 
 puts "all entries added"
