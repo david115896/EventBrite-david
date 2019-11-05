@@ -21,4 +21,5 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* link to the online version on heroku :
+ https://event-brite-thp-david.herokuapp.com/
