@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   
 
   devise_for :users
-  resources :attendances
-  resources :events
+  resources :events do
+    resources :attendances, only: [:create, :destroy]
+  end
   devise_scope :user do
     root :to => 'devise/sessions#new'
   end

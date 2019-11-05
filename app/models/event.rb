@@ -9,5 +9,11 @@ class Event < ApplicationRecord
 
     
     belongs_to :admin, class_name: "User"
+    has_many :attendances, dependent: :destroy
+    has_many :users, through: :attendances
+
+    def end_date
+        return self.start_date + duration * 60
+    end
 
 end

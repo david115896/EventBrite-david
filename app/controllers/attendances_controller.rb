@@ -1,52 +1,54 @@
 class AttendancesController < ApplicationController
-  before_action :set_attendance, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user
+  before_action :find_event, only: [:create]
+
 
   def index
     @attendances = Attendance.all
   end
 
   def show
+
   end
 
   def new
     @attendance = Attendance.new
   end
 
-  def edit
-  end
 
   def create
-    @attendance = Attendance.new(attendance_params)
-      if @attendance.save
-         redirect_to @attendance, notice: 'Attendance was successfully created.'
-      else
-        render :new
-      end
-  end
-
-  def update
-      if @attendance.update(attendance_params)
-       redirect_to @attendance, notice: 'Attendance was successfully updated.' 
-      else
-         render :edit 
-      end
-    
+    if already_participate?
+      flash[:danger] = "Il n'est pas possible de s'inscrire plusieurs fois a un evenement"
+      redirect_to event_path(@event)
+    else
+      @event.attendances.create(user_id: current_user.id)
+      redirect_to event_path(@event), flash: {success: 'Super, vous etes insrit a un nouvel evenement !'}
+    end
   end
 
   def destroy
-    @attendance.destroy
-     redirect_to attendances_url, notice: 'Attendance was successfully destroyed.'
+    find_attendance
+    if @attendance.destroy
+    end
+      redirect_to events_path, flash: {danger: 'Vous etes desinscrit de cet evenement !'}
     
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_attendance
-      @attendance = Attendance.find(params[:id])
-    end
-
+  def find_attendance
+    @attendance = Attendance.where(user_id: current_user.id, event_id: params[:event_id]).first
+  end
+   
     # Never trust parameters from the scary internet, only allow the white list through.
     def attendance_params
       params.fetch(:attendance, {})
+    end
+
+    def find_event
+      @event = Event.find(params[:event_id])
+    end
+
+    def already_participate?
+      Attendance.where(user_id: current_user.id, event_id: params[:event_id]).exists?
     end
 end
